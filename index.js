@@ -9,7 +9,6 @@ var lista = [
 ].sort().reverse();
 
 app.get('/series', function(req, res) {
-	var tem = false;
 	var nome =  req.query.nome;
 	var novalista = [];
 
@@ -17,17 +16,12 @@ app.get('/series', function(req, res) {
 		res.send(lista);
 	}else {
 		for (var linha in lista) {
-			  	if(lista[linha].nome == nome)	{
-						novalista.push(lista[linha]);
-
-				}
+			if(lista[linha].nome == nome)	{
+				novalista.push(lista[linha]);
+			}
 		}
 		res.send(novalista);
-		tem = true;
-		if (tem == false){
-			res.status(404).send('ERROO');
-		}
-	}
+	}	
 });
 
 app.get('/series/:id', function (req, res) {
@@ -42,7 +36,7 @@ app.get('/series/:id', function (req, res) {
 			}
 	}
 	if (tem == false){
-		res.status(404).send('ERROO');
+		res.status(404).send({ error: 'Id não encontrado' });
 	}
 
 })
