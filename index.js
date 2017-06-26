@@ -1,19 +1,16 @@
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
 
-var lista = [
-	{"id": 1,"nome": "Game of Thrones","categoria":"Drama"},
-	{"id": 4,"nome": "Leftovers","categoria":"Blow Mind"},
-	{"id": 3,"nome": "Silicon Valley","categoria":"Comedia"},
-	{"id": 5,"nome": "Silicon Valley","categoria":"Comedia"}
-].sort().reverse();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
+var lista = [];
 
 // realiza a busca  por nome no caminho Ex:/series?nome=Leftovers
 // realiza a busca  pela categoria no caminho Ex:/series?categoria=Blow mind
 // ou os dois parametros  Ex:/series?nome=Leftovers&categoria=Blow mind
 // caso nao passe nenhum parametro ele retorna a lista completa Ex: /series
-
 
 app.get('/series', function(req, res) {
 	var nome =  req.query.nome;
@@ -46,7 +43,6 @@ app.get('/series', function(req, res) {
 		}
 		res.send(novalista);
 	}
-
 });
 
 
@@ -65,7 +61,24 @@ app.get('/series/:id', function (req, res) {
 	if (tem == false){
 		res.status(404).send({ error: 'Id não encontrado' });
 	}
-
 })
+
+
+//realizando a insersao de uma serie
+app.post('/series', function(req, res){
+	var serie = req.body;
+	var tamanho = lista.length;
+
+		if (lista.length == 0){
+			serie.id = tamanho + 1;
+			lista.push(serie);
+		}else{
+			serie.id = lista[tamanho - 1] + 1
+			lista.push(serie);
+		}
+	res.send(lista);
+});
+
+
 
 app.listen(3000);
