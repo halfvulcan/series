@@ -1,4 +1,4 @@
-// modulo referente as rotas das series
+'use strict'
 const express = require('express'),
       app = express(),
       bodyParser = require('body-parser'),
