@@ -1,6 +1,12 @@
-// pegando as configuracoes do express
-const app = require('../config/config')();
 // modulo referente as rotas das series
-const rotas = require('./routes/serie')(app);
+const express = require('express'),
+      app = express(),
+      bodyParser = require('body-parser'),
+      serie = require('./routes/serie');
 
-app.listen(3000);
+      
+      app.use(bodyParser.json());
+      app.use(bodyParser.urlencoded({ extended: true }));
+      app.use(serie);
+      
+module.exports = app;

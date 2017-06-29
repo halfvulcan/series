@@ -1,5 +1,5 @@
-var app = require('express')();
-
-module.exports = function() {
-    return app;
+module.exports = {
+    "server":{
+        "port":3000
+      }
 }

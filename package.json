@@ -1,18 +1,17 @@
 {
-  "name": "series",
+  "name": "novo",
   "version": "1.0.0",
-  "description": "API que realiza a busca das melhores series do mundo",
+  "description": "Hello World express",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@gitlab.metasix.com.br:patricia.santana/series.git"
-  },
-  "author": "Patrícia Santana",
+  "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.15.3"
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "express-myconnection": "^1.0.4",
+    "mysql": "^2.13.0"
   }
 }
