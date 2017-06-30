@@ -23,7 +23,7 @@ router.get('/series', function (req, res) {
 router.get('/series/:id', function (req, res) {
 	let novalista = [];
 	let idSerie = req.params.id;
-	
+
 	novalista = listaSeries.filter(function (novalista) {
 		return novalista.id == idSerie;
 	});
@@ -31,24 +31,19 @@ router.get('/series/:id', function (req, res) {
 	if (novalista.length > 0)
 		res.send(novalista);
 	else
-		res.status(404).send({ error: 'Id não encontrado' });	
+		res.status(404).send({ error: 'Id não encontrado' });
 });
 
 
 router.post('/series', function (req, res) {
-	let novaSerie = req.body;
-	novalista = listaSeries.filter(function (novalista) {
-		return novalista.id == idSerie;
-	});
+	let serie = req.body;
 
+	if (listaSeries.length > 0)
+		serie.id = listaSeries[listaSeries.length - 1].id + 1
+	else
+		serie.id = 1;
 
-	if (listaSeries.length == 0) {
-		novaSerie.id = tamanho + 1;
-		listaSeries.push(novaSerie);
-	} else {
-		novaSerie.id = listaSeries[tamanho - 1].id + 1
-		listaSeries.push(novaSerie);
-	}
+	listaSeries.push(serie);
 	res.send(listaSeries);
 });
 
