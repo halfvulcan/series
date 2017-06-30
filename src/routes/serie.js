@@ -2,49 +2,31 @@
 const express = require('express'),
 	router = express.Router(),
 	app = require('../app'),
-	lista = [];
+	listaSeries = [];
 
 router.get('/series', function (req, res) {
-	let nome = req.query.nome;
-	let categoria = req.query.categoria;
+	let filtroNome = req.query.nome || false;
+	let filtroCategoria = req.query.categoria || false;
 	let novalista = [];
 
-	if (nome == null && categoria == null) {
-		res.send(lista);
+	novalista = listaSeries.filter(function (novalista) {
+		return novalista.nome == filtroNome || novalista.categoria == filtroCategoria;
+	});
+
+	if (filtroNome == false && filtroCategoria == false) {
+		res.send(listaSeries);
 	} else {
-		if (typeof nome != "undefined") {
-			for (let linha in lista) {
-				if (lista[linha].nome == nome) {
-					novalista.push(lista[linha]);
-				}
-			}
-		} else
-			if (typeof categoria != "undefined") {
-				for (let linha in lista) {
-					if (lista[linha].categoria == categoria) {
-						novalista.push(lista[linha]);
-					}
-				}
-			} else
-				if (typeof categoria != "undefined" && typeof categoria != "undefined") {
-					for (let linha in lista) {
-						if (lista[linha].nome == nome & lista[linha].categoria == categoria) {
-							novalista.push(lista[linha]);
-						}
-					}
-				}
 		res.send(novalista);
 	}
 });
 
-//realizando a busca pelo id pelo caminho Ex:/series/1
 router.get('/series/:id', function (req, res) {
-	let numero = 0;
+	let numero = 0; i
 	let tem = false;
 	numero = req.params.id;
-	for (let linha in lista) {
-		if (lista[linha].id == numero) {
-			res.send(lista[linha]);
+	for (let linha in listaSeries) {
+		if (listaSeries[linha].id == numero) {
+			res.send(listaSeries[linha]);
 			tem = true;
 		}
 	}
@@ -54,19 +36,18 @@ router.get('/series/:id', function (req, res) {
 });
 
 
-//realizando a insersao de uma serie
 router.post('/series', function (req, res) {
 	let serie = req.body;
-	let tamanho = lista.length;
+	let tamanho = listaSeries.length;
 
-	if (lista.length == 0) {
+	if (listaSeries.length == 0) {
 		serie.id = tamanho + 1;
-		lista.push(serie);
+		listaSeries.push(serie);
 	} else {
-		serie.id = lista[tamanho - 1].id + 1
-		lista.push(serie);
+		serie.id = listaSeries[tamanho - 1].id + 1
+		listaSeries.push(serie);
 	}
-	res.send(lista);
+	res.send(listaSeries);
 });
 
 module.exports = router;
