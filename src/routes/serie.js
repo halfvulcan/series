@@ -7,17 +7,16 @@ const express = require('express'),
 router.get('/series', function (req, res) {
 	let filtroNome = req.query.nome || false;
 	let filtroCategoria = req.query.categoria || false;
-	let novalista = [];
+	let serieFiltrada = [];
 
-	novalista = listaSeries.filter(function (novalista) {
-		return novalista.nome == filtroNome || novalista.categoria == filtroCategoria;
-	});
-
-	if (filtroNome == false && filtroCategoria == false) {
-		res.send(listaSeries);
-	} else {
-		res.send(novalista);
+	if (filtroNome || filtroCategoria) {
+		serieFiltrada = listaSeries.filter(function (serieFiltrada) {
+			return serieFiltrada.nome == filtroNome || serieFiltrada.categoria == filtroCategoria;
+		});
+		res.send(serieFiltrada);
 	}
+	else res.send(listaSeries);
+
 });
 
 router.get('/series/:id', function (req, res) {
