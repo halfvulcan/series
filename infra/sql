@@ -1,0 +1,13 @@
+create database series_nodejs; 
+
+use series_nodejs;
+
+CREATE TABLE series (
+  id int(11) NOT NULL PRIMARY KEY,
+  nome varchar(255) DEFAULT NULL,
+  categoria text);
+
+insert into series(id, nome, categoria) values (1 , 'Mr Robot', 'Drama');
+
+insert into series(id, nome, categoria)
+values (2 , 'Got', 'Ficcao');
