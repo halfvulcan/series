@@ -2,7 +2,10 @@
 const express = require('express'),
 	router = express.Router(),
 	app = require('../app'),
-	listaSeries = [];
+	listaSeries = [
+		{ "nome": "Leftovers", "categoria": "Ficcao", "id": 1 },
+		{ "nome": "Got", "categoria": "Drama", "id": 2 }
+	];
 
 router.get('/series', function (req, res) {
 	let filtroNome = req.query.nome || false;
@@ -11,12 +14,14 @@ router.get('/series', function (req, res) {
 
 	if (filtroNome || filtroCategoria) {
 		serieFiltrada = listaSeries.filter(function (serieFiltrada) {
-			return serieFiltrada.nome == filtroNome || serieFiltrada.categoria == filtroCategoria;
+			if (filtroNome && filtroCategoria) {
+				return filtroNome == serieFiltrada.nome && filtroCategoria == serieFiltrada.categoria
+			} else
+				return filtroNome == serieFiltrada.nome || filtroCategoria == serieFiltrada.categoria
 		});
 		res.send(serieFiltrada);
 	}
 	else res.send(listaSeries);
-
 });
 
 router.get('/series/:id', function (req, res) {
