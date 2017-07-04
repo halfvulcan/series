@@ -20,15 +20,15 @@ router.get('/series', function (req, res) {
 });
 
 router.get('/series/:id', function (req, res) {
-	let novalista = [];
+	let serieFiltrada = [];
 	let idSerie = req.params.id;
 
-	novalista = listaSeries.filter(function (novalista) {
-		return novalista.id == idSerie;
+	serieFiltrada = listaSeries.filter(function (serieFiltrada) {
+		return serieFiltrada.id == idSerie;
 	});
 
-	if (novalista.length > 0)
-		res.send(novalista);
+	if (serieFiltrada.length > 0)
+		res.send(serieFiltrada);
 	else
 		res.status(404).send({ error: 'Id não encontrado' });
 });
