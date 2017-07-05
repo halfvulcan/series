@@ -5,6 +5,8 @@ const express = require('express'),
 	fs = require("fs"),
 	arquivo = 'lista.json';
 
+if (fs.existsSync(arquivo) == false) fs.writeFileSync(arquivo, '[]', { flag: 'w' });
+
 let listaSeries = fs.readFileSync(arquivo);
 listaSeries = JSON.parse(listaSeries);
 
@@ -47,14 +49,10 @@ router.post('/series', function (req, res) {
 	res.send(serie);
 	let novaSerie = JSON.stringify(listaSeries);
 
+
 	fs.writeFile(arquivo, novaSerie, function (err) {
 		if (err) return console.error(err);
 	});
 });
-
-
-
-
-
 
 module.exports = router;
