@@ -2,13 +2,9 @@
 const express = require('express'),
 	router = express.Router(),
 	app = require('../app'),
-	fs = require("fs"),
-	arquivo = 'lista.json';
+	persisteArquivo = require('../persisteArquivo.js');
 
-if (fs.existsSync(arquivo) == false) fs.writeFileSync(arquivo, '[]', { flag: 'w' });
-
-let listaSeries = fs.readFileSync(arquivo);
-listaSeries = JSON.parse(listaSeries);
+let listaSeries = persisteArquivo.leArquivo();
 
 router.get('/series', function (req, res) {
 	let serieFiltrada = [];
@@ -49,10 +45,7 @@ router.post('/series', function (req, res) {
 	res.send(serie);
 	let novaSerie = JSON.stringify(listaSeries);
 
-
-	fs.writeFile(arquivo, novaSerie, function (err) {
-		if (err) return console.error(err);
-	});
+	persisteArquivo.insereArquivo(novaSerie);
 });
 
 module.exports = router;
