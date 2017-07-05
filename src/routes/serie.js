@@ -2,9 +2,10 @@
 const express = require('express'),
 	router = express.Router(),
 	app = require('../app'),
-	persisteArquivo = require('../persisteArquivo.js');
+	persisteArquivo = require('../persisteArquivo');
 
-let listaSeries = persisteArquivo.leArquivo();
+let serieFiltrada = [],
+	listaSeries = persisteArquivo.leArquivoOuCriaArquivo();
 
 router.get('/series', function (req, res) {
 	let serieFiltrada = [];
@@ -23,7 +24,6 @@ router.get('/series', function (req, res) {
 });
 
 router.get('/series/:id', function (req, res) {
-	let serieFiltrada = [];
 	let idSerie = req.params.id;
 
 	serieFiltrada = listaSeries.filter(function (serieFiltrada) {
@@ -42,10 +42,19 @@ router.post('/series', function (req, res) {
 	else serie.id = 1;
 
 	listaSeries.push(serie);
-	res.send(serie);
 	let novaSerie = JSON.stringify(listaSeries);
-
 	persisteArquivo.insereArquivo(novaSerie);
+	res.send(serie);
+});
+
+router.delete('/series/:id', function (req, res) {
+	let idSerie = req.params.id;
+	let index = listaSeries.findIndex((serieFiltrada) => serieFiltrada.id == idSerie);
+
+	if (index > -1) listaSeries.splice(index, 1);
+	let novaSerie = JSON.stringify(listaSeries);
+	persisteArquivo.insereArquivo(novaSerie);
+	res.send(serieFiltrada);
 });
 
 module.exports = router;
