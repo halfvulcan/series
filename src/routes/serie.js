@@ -8,7 +8,6 @@ let serieFiltrada = [],
 	listaSeries = persisteArquivo.leArquivoOuCriaArquivo();
 
 router.get('/series', function (req, res) {
-	let serieFiltrada = [];
 	let filtroNome = req.query.nome || false;
 	let filtroCategoria = req.query.categoria || false;
 
@@ -48,10 +47,27 @@ router.post('/series', function (req, res) {
 });
 
 router.delete('/series/:id', function (req, res) {
-	let idSerie = req.params.id;
-	let index = listaSeries.findIndex((serieFiltrada) => serieFiltrada.id == idSerie);
+	let serie = req.body,
+		idSerie = req.params.id,
+		index = listaSeries.findIndex((serieFiltrada) => serieFiltrada.id == idSerie);
 
 	if (index > -1) listaSeries.splice(index, 1);
+
+	let novaSerie = JSON.stringify(listaSeries);
+	persisteArquivo.insereArquivo(novaSerie);
+	res.send(serieFiltrada);
+});
+
+
+router.put('/series/:id', function (req, res) {
+	let serie = req.body,
+		idSerie = req.params.id,
+		index = listaSeries.findIndex((serieFiltrada) => serieFiltrada.id == idSerie);
+
+	if (index > -1) {
+		serie.id = listaSeries[index].id;
+		listaSeries.splice(index, 1, serie);
+	}
 	let novaSerie = JSON.stringify(listaSeries);
 	persisteArquivo.insereArquivo(novaSerie);
 	res.send(serieFiltrada);
