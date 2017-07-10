@@ -67,6 +67,8 @@ router.put('/series/:id', function (req, res) {
 		idSerie = req.params.id,
 		index = listaSeries.findIndex((serieFiltrada) => serieFiltrada.id == idSerie);
 
+	if (validacao(req, res) == false) return;
+
 	if (index > -1) {
 		serie.id = listaSeries[index].id;
 		listaSeries.splice(index, 1, serie);

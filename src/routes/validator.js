@@ -7,11 +7,10 @@ const validacao = function (req, res) {
 
     let errors = req.validationErrors();
     if (errors) {
-        res.status(400).json({ "msg": "msg de erro" });
+        res.status(400).json({ erro: errors });
         return false;
     }
     return true;
 }
-
 
 module.exports = validacao;
