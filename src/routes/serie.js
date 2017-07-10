@@ -2,10 +2,12 @@
 const express = require('express'),
 	router = express.Router(),
 	app = require('../app'),
-	persisteArquivo = require('../persisteArquivo');
+	persisteArquivo = require('../persisteArquivo'),
+	validacao = require('./validator');
 
 let serieFiltrada = [],
 	listaSeries = persisteArquivo.leArquivoOuCriaArquivo();
+
 
 router.get('/series', function (req, res) {
 	let filtroNome = req.query.nome || false;
@@ -35,7 +37,8 @@ router.get('/series/:id', function (req, res) {
 
 router.post('/series', function (req, res) {
 	let serie = req.body;
-
+	validacao.validaBody(req, res);
+	
 	if (listaSeries.length > 0)
 		serie.id = listaSeries[listaSeries.length - 1].id + 1
 	else serie.id = 1;
@@ -57,7 +60,6 @@ router.delete('/series/:id', function (req, res) {
 	persisteArquivo.insereArquivo(novaSerie);
 	res.send(serieFiltrada);
 });
-
 
 router.put('/series/:id', function (req, res) {
 	let serie = req.body,

@@ -1,11 +1,12 @@
 'use strict'
 
 const fs = require("fs"),
-    arquivo = 'lista.json';
-
+      config = require('../config/config'),
+      arquivo = config.arquivo.nomeArquivo;
+   
 const persisteArquivo = {
     leArquivoOuCriaArquivo: function(){
-        if (fs.existsSync(arquivo) == false)
+        if (fs.existsSync() == false)
             fs.writeFileSync(arquivo, '[]', { flag: 'w' })
         return JSON.parse(fs.readFileSync(arquivo));
     },
