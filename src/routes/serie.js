@@ -1,7 +1,6 @@
 'use strict'
 const express = require('express'),
 	router = express.Router(),
-	app = require('../app'),
 	persisteArquivo = require('../persisteArquivo'),
 	validacao = require('./validator');
 
@@ -37,7 +36,8 @@ router.get('/series/:id', function (req, res) {
 
 router.post('/series', function (req, res) {
 	let serie = req.body;
-	validacao.validaBody(req, res);
+
+	if (validacao(req, res) == false) return;
 
 	if (listaSeries.length > 0)
 		serie.id = listaSeries[listaSeries.length - 1].id + 1

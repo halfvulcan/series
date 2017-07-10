@@ -17,7 +17,7 @@ describe('Series', function () {
     });
         it('#Cadastro de uma serie valida', function (done) {
         request.post('/series')
-            .send({ nome: "VAI CARALHOS", categoria: "FODASSE" })
+            .send({ nome:"VAI CARALHOS", categoria: "FODASSE" })
             .expect(200, done);
     });
 });
