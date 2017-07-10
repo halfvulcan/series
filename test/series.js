@@ -9,18 +9,30 @@ describe('Series', function () {
             .expect('Content-Type', /json/)
             .expect(200, done);
     });
-    it('#Cadastro de uma serie invalida', function (done) {
+    it('#Cadastro de uma serie INVALIDA', function (done) {
         request.post('/series')
-            .send({ nome: "", categoria: "FODASSE" })
+            .send({ nome: "", categoria: "INVALIDA" })
             .expect(400, done);
     });
     it('#Cadastro de uma serie valida', function (done) {
         request.post('/series')
-            .send({ nome: "VAI CARALHOS", categoria: "FODASSE" })
+            .send({ nome: "Leftovers", categoria: "Blow Mind" })
             .expect(200, done);
     });
     it('Lista a serie por id', function (done) {
         request.get('/series/1')
+            .expect(200, done);
+    });
+    it('Lista a serie por nome', function (done) {
+        request.get('/series?Leftovers')
+            .expect(200, done);
+    });
+    it('Lista a serie por categoria', function (done) {
+        request.get('/series?Blow Mind')
+            .expect(200, done);
+    });
+    it('Lista a serie por categoria e nome', function (done) {
+        request.get('/series?Blow Mind&Leftovers')
             .expect(200, done);
     });
     it('#Autalizando uma serie', function (done) {
@@ -28,7 +40,7 @@ describe('Series', function () {
             .send({ nome: "ATUALIZADA", categoria: "FODASSE" })
             .expect(200, done);
     });
-    it('#Autalizando uma serie incorretamente', function (done) {
+    it('#Autalizando uma serie INCORRETAMENTE', function (done) {
         request.put('/series/1')
             .send({ nome: "ATUALIZADA", categoria: "" })
             .expect(400, done);
