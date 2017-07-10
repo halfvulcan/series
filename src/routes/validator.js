@@ -1,6 +1,5 @@
 'use strict'
-const serie = require('./serie'),
-    validator = require('./validator');;
+const serie = require('./serie');
 
 const validacao = {
     validaBody: function (req, res) {
@@ -9,14 +8,11 @@ const validacao = {
 
         let errors = req.validationErrors();
         if (errors) {
-            res.status(400);
-            // res.status(404).send({ errors: 'Id não encontrado' });
+            res.status(400).json({ "msg": "msg de erro" });
+            res.end();
             return;
         }
-        return;
-
     }
-
 }
 
 module.exports = validacao;

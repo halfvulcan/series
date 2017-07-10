@@ -38,7 +38,7 @@ router.get('/series/:id', function (req, res) {
 router.post('/series', function (req, res) {
 	let serie = req.body;
 	validacao.validaBody(req, res);
-	
+
 	if (listaSeries.length > 0)
 		serie.id = listaSeries[listaSeries.length - 1].id + 1
 	else serie.id = 1;
@@ -47,6 +47,7 @@ router.post('/series', function (req, res) {
 	let novaSerie = JSON.stringify(listaSeries);
 	persisteArquivo.insereArquivo(novaSerie);
 	res.send(serie);
+
 });
 
 router.delete('/series/:id', function (req, res) {
