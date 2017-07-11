@@ -1,20 +1,26 @@
 'use strict'
 const express = require('express'),
 	router = express.Router(),
-	persisteArquivo = require('../persisteArquivo'),
-	validacao = require('./validator');
+	validacao = require('./validator'),
+	connection = require('../../infra/createDBConnection'),
+	serieDAO = require('../../infra/serieDAO');
 
 let serieFiltrada = [],
-	listaSeries = persisteArquivo.leArquivoOuCriaArquivo();
+	listaSeries = [];
 
 
-router.get('/series', function (req, res) {
+serieDAO.listagem(function (listagem) {
+	listaSeries = listagem;
+});
+
+router.get('/series', function (req, res, callback) {
+
 	let filtroNome = req.query.nome || false;
 	let filtroCategoria = req.query.categoria || false;
 
 	serieFiltrada = listaSeries.filter(function (serieFiltrada) {
 		if (filtroNome && filtroCategoria)
-			return filtroNome == serieFiltrada.nome && filtroCategoria == serieFiltrada.categoria;
+			return filtrserieFiltradaoNome == serieFiltrada.nome && filtroCategoria == serieFiltrada.categoria;
 		else
 			return filtroNome == serieFiltrada.nome || filtroCategoria == serieFiltrada.categoria;
 	});
@@ -43,39 +49,28 @@ router.post('/series', function (req, res) {
 		serie.id = listaSeries[listaSeries.length - 1].id + 1
 	else serie.id = 1;
 
-	listaSeries.push(serie);
-	let novaSerie = JSON.stringify(listaSeries);
-	persisteArquivo.insereArquivo(novaSerie);
+	serieDAO.insere(serie);
 	res.send(serie);
 
 });
 
 router.delete('/series/:id', function (req, res) {
 	let serie = req.body,
-		idSerie = req.params.id,
-		index = listaSeries.findIndex((serieFiltrada) => serieFiltrada.id == idSerie);
+		idSerie = req.params.id;
 
-	if (index > -1) listaSeries.splice(index, 1);
-
-	let novaSerie = JSON.stringify(listaSeries);
-	persisteArquivo.insereArquivo(novaSerie);
-	res.send(serieFiltrada);
+	serieDAO.deleta(idSerie);
+	res.send(serie);
 });
 
 router.put('/series/:id', function (req, res) {
 	let serie = req.body,
-		idSerie = req.params.id,
-		index = listaSeries.findIndex((serieFiltrada) => serieFiltrada.id == idSerie);
+		idSerie = req.params.id;
 
 	if (validacao(req, res) == false) return;
 
-	if (index > -1) {
-		serie.id = listaSeries[index].id;
-		listaSeries.splice(index, 1, serie);
-	}
-	let novaSerie = JSON.stringify(listaSeries);
-	persisteArquivo.insereArquivo(novaSerie);
-	res.send(serieFiltrada);
+	serieDAO.atualiza(serie, idSerie);
+	res.send(serie);
+
 });
 
 module.exports = router;
