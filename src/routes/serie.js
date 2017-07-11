@@ -9,7 +9,7 @@ let serieFiltrada = [],
 	listaSeries = [];
 
 
-serieDAO.listagem(function (listagem) {
+serieDAO.listagem(function atualizalista(listagem) {
 	listaSeries = listagem;
 });
 
@@ -52,6 +52,10 @@ router.post('/series', function (req, res) {
 	serieDAO.insere(serie);
 	res.send(serie);
 
+	serieDAO.listagem(function atualizalista(listagem) {
+		listaSeries = listagem;
+	});
+
 });
 
 router.delete('/series/:id', function (req, res) {
@@ -60,6 +64,10 @@ router.delete('/series/:id', function (req, res) {
 
 	serieDAO.deleta(idSerie);
 	res.send(serie);
+
+	serieDAO.listagem(function atualizalista(listagem) {
+		listaSeries = listagem;
+	});
 });
 
 router.put('/series/:id', function (req, res) {
@@ -68,9 +76,9 @@ router.put('/series/:id', function (req, res) {
 
 	if (validacao(req, res) == false) return;
 
-	serieDAO.atualiza(serie, idSerie);
-	res.send(serie);
-
+	serieDAO.listagem(function atualizalista(listagem) {
+		listaSeries = listagem;
+	});
 });
 
 module.exports = router;

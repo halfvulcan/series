@@ -9,7 +9,6 @@ const serieDAO = {
             }
             else
                 return 'Error while performing Query.';
-
         });
     },
     insere: function (serie) {
@@ -28,5 +27,6 @@ const serieDAO = {
             if (err) console.log(err);
         });
     }
+
 }
 module.exports = serieDAO;
