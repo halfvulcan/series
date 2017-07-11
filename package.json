@@ -6,7 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.metasix.com.br:patricia.santana/series.git"
+  },
+  "author": "Patrícia Santana",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.17.2",

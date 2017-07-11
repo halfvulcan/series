@@ -32,11 +32,11 @@ router.get('/series', function (req, res, callback) {
 router.get('/series/:id', function (req, res) {
 	let idSerie = req.params.id;
 
-	serieFiltrada = listaSeries.filter(function (serieFiltrada) {
-		return serieFiltrada.id == idSerie;
+	serieDAO.listaPorId(idSerie, function (listagem) {
+		serieFiltrada = listagem;
+		if (serieFiltrada.length > 0) res.send(serieFiltrada);
+		else res.status(404).send({ error: 'Id não encontrado' });
 	});
-	if (serieFiltrada.length > 0) res.send(serieFiltrada);
-	else res.status(404).send({ error: 'Id não encontrado' });
 
 });
 
@@ -76,7 +76,7 @@ router.put('/series/:id', function (req, res) {
 
 	if (validacao(req, res) == false) return;
 
-	serieDAO.atualiza(serie,idSerie);
+	serieDAO.atualiza(serie, idSerie);
 	res.send(serie);
 
 	serieDAO.listagem(function atualizalista(listagem) {

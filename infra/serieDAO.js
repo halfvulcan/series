@@ -8,6 +8,12 @@ const serieDAO = {
             callback(rows);
         });
     },
+    listaPorId: function (idSerie,callback) {
+        connection.query("SELECT * FROM series WHERE id = ? ", [idSerie] ,function (err, rows, fields) {
+            if (err) throw err;
+           callback(rows);
+        });
+    },
     insere: function (serie) {
         connection.query('INSERT INTO series SET ?', serie, function (err, result) {
             if (err) throw err;

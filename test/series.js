@@ -20,7 +20,7 @@ describe('Series', function () {
             .expect(200, done);
     });
     it('Lista a serie por id', function (done) {
-        request.get('/series/8')
+        request.get('/series/9')
             .expect(200, done);
     });
     it('Lista a serie por nome', function (done) {
