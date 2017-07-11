@@ -20,7 +20,7 @@ describe('Series', function () {
             .expect(200, done);
     });
     it('Lista a serie por id', function (done) {
-        request.get('/series/1')
+        request.get('/series/8')
             .expect(200, done);
     });
     it('Lista a serie por nome', function (done) {
@@ -36,17 +36,17 @@ describe('Series', function () {
             .expect(200, done);
     });
     it('#Autalizando uma serie', function (done) {
-        request.put('/series/1')
+        request.put('/series/8')
             .send({ nome: "ATUALIZADA", categoria: "FODASSE" })
             .expect(200, done);
     });
     it('#Autalizando uma serie INCORRETAMENTE', function (done) {
-        request.put('/series/1')
+        request.put('/series/8')
             .send({ nome: "ATUALIZADA", categoria: "" })
             .expect(400, done);
     });
     it('#Deletando uma serie', function (done) {
-        request.delete('/series/1')
+        request.delete('/series/8')
             .expect(200, done);
     });
 });

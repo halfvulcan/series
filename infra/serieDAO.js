@@ -16,7 +16,6 @@ const serieDAO = {
     atualiza: function (serie, idSerie) {
         connection.query('UPDATE series SET ? WHERE id = ?', [serie, idSerie], function (err, result) {
             if (err) throw err;
-
         });
     },
     deleta: function (idSerie) {

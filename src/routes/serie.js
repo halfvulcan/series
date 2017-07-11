@@ -76,6 +76,9 @@ router.put('/series/:id', function (req, res) {
 
 	if (validacao(req, res) == false) return;
 
+	serieDAO.atualiza(serie,idSerie);
+	res.send(serie);
+
 	serieDAO.listagem(function atualizalista(listagem) {
 		listaSeries = listagem;
 	});
