@@ -1,14 +1,13 @@
 # Seriados API
 
-
-----------
-
 Esta é uma API que realiza o cadastro busca, atualização e exclusão de seriados. 
 
 >Foi desenvolvida em nodejs e com alguns outros frameworks:
 
 >[Nodejs](nodejs.org) - O Node.js permite que você execute o JavaScript no servidor.
+
 >[Express](expressjs.com) - O Express é um framework para aplicativo da web do Node.js.
+
 >[Mysql](mysql.com)  -O MySQL é um SGBD, que utiliza a linguagem SQL como interface. 
 
 
@@ -16,26 +15,27 @@ Esta é uma API que realiza o cadastro busca, atualização e exclusão de seria
 
 >Instalação via git clone
 ```bash
-$ git clone https://github.com/
+$ git clone http://gitlab.metasix.com.br/patricia.santana/series
 $ cd series
 $ npm install
 ```
 
-###Testes
+### Testes
 
 >API consta com testes integrados para realizar a validação dos componentes principais com alguns cenários básicos. 
 
 >Para executar basta executar os testes integrados basta executar os seguintes passos:
+
 >```bash
 $ cd /series
 $ npm test
 ```
 ### Utilização 
 
- Para realizar a consulta, atualização, inclusão e exclusão de uma série você deve seguir os seguintes passos
-.
+ Para realizar a consulta, atualização, inclusão e exclusão de uma série você deve seguir os seguintes passos.
 
 Para consultar todas as series.
+
 >Método GET.
 url: /series
 
