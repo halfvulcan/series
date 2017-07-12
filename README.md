@@ -48,27 +48,33 @@ Consultar todas as series.
 Consultar uma série por ID.
 
 >Método : GET
+
 >URL: /series/:id
 
 Consultar uma série por nome.
 
 >Método : GET
+
 >URL: /series?[nome]
 
 Consultar uma série por categoria.
 
 >Método : GET
+
 >URL: /series?[categoria]
 
 Consultar uma série por nome e categoria.
 
 >Método : GET
+
 >URL: /series?[nome]&[categoria]
 
 Atualizar os dados de uma série por ID.
 
 >Método : PUT
+
 >URL: /series/:id
+
 body : {
 	nome: 'The handmaid's tale',
     categoria : 'Drama'
@@ -85,4 +91,5 @@ body : {
 
 Excluir uma serie por ID.
 >Método : DELETE
+
 >URL: /series/:id
