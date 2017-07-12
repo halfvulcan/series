@@ -30,36 +30,39 @@ $ npm install
 $ cd /series
 $ npm test
 ```
+
+
 ### Utilização 
 
- Para realizar a consulta, atualização, inclusão e exclusão de uma série você deve seguir os seguintes passos.
+ 
+>Para realizar a consulta, atualização, inclusão e exclusão de uma série você deve seguir os seguintes passos.
 
-Para consultar todas as series.
+Consultar todas as series.
 
 >Método GET.
 url: /series
 
-Para consultar uma série por ID.
+Consultar uma série por ID.
 
 >Método GET
 url: /series/:id
 
-Para consultar uma série por nome.
+Consultar uma série por nome.
 
 >Método GET
 url: /series?[nome]
 
-Para consultar uma série por categoria.
+Consultar uma série por categoria.
 
 >Método GET
 url: /series?[categoria]
 
-Para consultar uma série por nome e categoria.
+Consultar uma série por nome e categoria.
 
 >Método GET
 url: /series?[nome]&[categoria]
 
-Para atualizar os dados de uma série por ID.
+Atualizar os dados de uma série por ID.
 
 >Método PUT
 url: /series/:id
@@ -68,7 +71,7 @@ body : {
     categoria : 'Drama'
     }
 
-Para incluir uma série
+Incluir uma série
 
 >Método POST
 url: /series
@@ -77,6 +80,6 @@ body : {
     categoria : 'Ficção distópica'
 }
 
-Para excluir uma serie por ID.
+Excluir uma serie por ID.
 >Método DELETE
 url: /series/:id
