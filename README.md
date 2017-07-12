@@ -1,29 +1,70 @@
-Este projeto tem como proposito o desenvolvimento de alguns conceitos.
+Seriados API
+===================
 
--> Express 
-(Express é um framework para Node.js. Ele é minimalista, um robusto sistema de roteamento, um executável para geração de aplicações.)
+>Esta é uma API que realiza o cadastro busca, atualização e exclusão de seriados. 
 
--> Http
-(O protocolo HTTP é baseado em requisições e respostas entre clientes e servidores.)
+Foi desenvolvida em nodejs e com alguns outros frameworks:
 
--> Rest
-(REST significa Representational State Transfer. REST consiste em princípios/regras/constraints que, quando seguidas, permitem a criação de um projeto com interfaces bem definidas. 
-Desta forma, permitindo, por exemplo, que aplicações se comuniquem.)
-
--> Json
-(JSON (JavaScript Object Notation - Notação de Objetos JavaScript) é uma formatação leve de troca de dados. Para seres humanos, é fácil de ler e escrever.
-Para máquinas, é fácil de interpretar e gerar. Está baseado em um subconjunto da linguagem de programação JavaScript)
-
--> Node
-(Node.js é uma plataforma construída sobre o motor JavaScript do Google Chrome para facilmente construir aplicações de rede rápidas e escaláveis.)
-
--> Banco de Dados
+Nodejs - O Node.js permite que você execute o JavaScript no servidor.
+Express -O Express é um framework para aplicativo da web do Node.js.
+Mysql -O MySQL é um SGBD, que utiliza a linguagem SQL como interface. 
 
 
-A aplicação deverá consumir uma api em JSON que contem uma listagem de series.
-Também deverá ter as opções de inserir, alterar, excluir e realizar a busca com os seguintes filtros:
+### Instalação
 
--> Id
--> Nome
--> Categoria
--> Data de Inserção
+>Instalação via git clone
+$ git clone https://github.com/
+$ cd series
+$ npm install
+
+
+### Utilização 
+
+ Para realizar a consulta, atulização, inclusão e exclusão de uma serie voce deve seguir os seguintes passos
+.
+
+Para consultar todas as series.
+>Método GET.
+url: /series
+
+Para consultar uma série por ID.
+
+>Método GET
+url: /series/id
+
+Para consultar uma série por nome.
+
+>Método GET
+url: /series?nome
+
+Para consultar uma série por categoria.
+
+>Método GET
+url: /series?categoria
+
+Para consultar uma série por nome e categoria.
+
+>Método GET
+url: /series?nome&categoria
+
+Para atualizar os dados de uma série por ID.
+
+>Método PUT
+url: /series/id
+body : {
+    nome: 'The handmaid's tale',
+    categoria : 'Drama'
+}
+
+Para incluir uma série
+
+>Método POST
+url: /series
+body : {
+    nome: 'The handmaid's tale',
+    categoria : 'Ficção distópica'
+}
+
+Para excluir uma serie por ID.
+>Método DELETE
+url: /series/id
