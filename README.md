@@ -76,17 +76,23 @@ Atualizar os dados de uma série por ID.
 >URL: /series/:id
 
 body : {
+
 	nome: 'The handmaid's tale',
+
     categoria : 'Drama'
+    
     }
 
 Incluir uma série
 
 >Método : POST
 >URL: /series
-body : {
+>body : {
+
     nome: 'The handmaid's tale',
+
     categoria : 'Ficção distópica'
+
 }
 
 Excluir uma serie por ID.
