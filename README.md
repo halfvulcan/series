@@ -43,7 +43,7 @@ Consultar todas as series.
 
 >Método GET.
 
-url: /series
+>url: /series
 
 Consultar uma série por ID.
 
