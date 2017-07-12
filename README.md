@@ -42,6 +42,7 @@ $ npm test
 Consultar todas as series.
 
 >Método GET.
+
 url: /series
 
 Consultar uma série por ID.
