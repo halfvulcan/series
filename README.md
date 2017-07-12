@@ -70,7 +70,7 @@ Consultar uma série por nome e categoria.
 >URL: /series?[nome]&[categoria]
 
 Atualizar os dados de uma série por ID.
-
+URL
 >Método : PUT
 
 >URL: /series/:id
@@ -80,7 +80,9 @@ Atualizar os dados de uma série por ID.
 Incluir uma série
 
 >Método : POST
+
 >URL: /series
+
 >body : { nome: 'The handmaid's tale', categoria : 'Ficção distópica'}
 
 Excluir uma serie por ID.
