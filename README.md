@@ -2,6 +2,7 @@
 
 Esta é uma API que realiza o cadastro busca, atualização e exclusão de seriados. 
 
+
 >Foi desenvolvida em nodejs e com alguns outros frameworks:
 
 >[Nodejs](nodejs.org) - O Node.js permite que você execute o JavaScript no servidor.
@@ -23,6 +24,7 @@ $ npm install
 ### Testes
 
 >API consta com testes integrados para realizar a validação dos componentes principais com alguns cenários básicos. 
+
 
 >Para executar basta executar os testes integrados basta executar os seguintes passos:
 
