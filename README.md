@@ -1,12 +1,15 @@
 # Seriados API
 
+
+----------
+
 Esta é uma API que realiza o cadastro busca, atualização e exclusão de seriados. 
 
 >Foi desenvolvida em nodejs e com alguns outros frameworks:
 
 >[Nodejs](nodejs.org) - O Node.js permite que você execute o JavaScript no servidor.
-[Express](expressjs.com) - O Express é um framework para aplicativo da web do Node.js.
-[Mysql](mysql.com)  -O MySQL é um SGBD, que utiliza a linguagem SQL como interface. 
+>[Express](expressjs.com) - O Express é um framework para aplicativo da web do Node.js.
+>[Mysql](mysql.com)  -O MySQL é um SGBD, que utiliza a linguagem SQL como interface. 
 
 
 ### Instalação
