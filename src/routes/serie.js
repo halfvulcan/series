@@ -62,8 +62,14 @@ router.delete('/series/:id', function (req, res) {
 	let serie = req.body,
 		idSerie = req.params.id;
 
-	serieDAO.deleta(idSerie);
-	res.send(serie);
+	serieDAO.listaPorId(idSerie, function (listagem) {
+		serieFiltrada = listagem;
+		if (serieFiltrada.length > 0) {
+			serieDAO.deleta(idSerie);
+			res.send(serie);
+		}
+		else res.status(404).send({ error: 'Id não encontrado para deleção' });
+	});
 
 	serieDAO.listagem(function atualizalista(listagem) {
 		listaSeries = listagem;
@@ -76,8 +82,14 @@ router.put('/series/:id', function (req, res) {
 
 	if (validacao(req, res) == false) return;
 
-	serieDAO.atualiza(serie, idSerie);
-	res.send(serie);
+	serieDAO.listaPorId(idSerie, function (listagem) {
+		serieFiltrada = listagem;
+		if (serieFiltrada.length > 0) {
+			serieDAO.atualiza(serie, idSerie);
+			res.send(serie);
+		}
+		else res.status(404).send({ error: 'Id não encontrado para atualizacao' });
+	});
 
 	serieDAO.listagem(function atualizalista(listagem) {
 		listaSeries = listagem;

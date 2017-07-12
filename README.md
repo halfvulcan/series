@@ -2,8 +2,7 @@
 
 Esta é uma API que realiza o cadastro busca, atualização e exclusão de seriados. 
 
-
->Foi desenvolvida em nodejs e com alguns outros frameworks:
+> Foi desenvolvida em nodejs e com alguns outros frameworks:
 
 >[Nodejs](nodejs.org) - O Node.js permite que você execute o JavaScript no servidor.
 
